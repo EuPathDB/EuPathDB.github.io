@@ -1,0 +1,11 @@
+# Site settings
+title: EuPathDB Core Infrastructure
+project: EuPathDB Bioinformatics Resource Center
+email: help@eupathdb.org
+description: "EuPathDB system infrastructure documentation."
+baseurl: ""
+url: "http://eupathdb.org"
+
+# Build settings
+markdown: kramdown
+permalink: pretty
