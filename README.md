@@ -1,4 +1,4 @@
 EuPathDB.github.io
 ==================
 
-Project Pages
+Project Pages for EuPathDB Bioinformatics Resource Center
