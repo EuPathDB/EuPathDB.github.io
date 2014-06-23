@@ -11,9 +11,9 @@ If you decide to use HTTP Server on your project, the next step is to decide how
 
 EuPathDB's AHS setup is based on RHEL's default installation so logs, configurations, website working directories are in the vicinity of their expected locations. A system administrator who has experience with AHS on RHEL-based systems should have little trouble supporting the EuPathDB additions. We add to this default organization a few configuration files and subdirectories. The additional organization and naming conventions allow us to support hundreds of development and production websites across a dozen projects.
 
-We configure AHS to use [name-based virtual hosts](https://httpd.apache.org/docs/2.2/vhosts/name-based.html) so a single IP address can server multiple websites.
+We configure AHS to use [name-based virtual hosts](https://httpd.apache.org/docs/2.2/vhosts/name-based.html) so a single IP address can serve multiple websites. Hosting multiple websites is highly recommended so you can have independent development and production webistes. The name-based virtual hosting will require that you work with your DNS provider to configure name records for each host.
 
-This chapter will explain the steps for setting up HTTP Server for the project `FooDB`. The project name, `FooDB`, is also used for the model name for WDK utilities, e.g. `wdkCache -model FooDB`, and for the project id in some website URLs. That is, the name used for the data loading and web applications is carried through to the system infrastructure.
+This chapter will explain the steps for setting up the HTTP Server for the project `FooDB`. The project name, `FooDB`, is also used for the model name for WDK utilities, e.g. `wdkCache -model FooDB`, and for the project id in some website URLs. That is, the name used for the data loading and web applications is carried through to the system infrastructure.
 
 ## Quick Start Installation
 
@@ -139,8 +139,14 @@ The default AHS log directory on RHEL is `/var/log/httpd`. EuPathDB's convention
 
             /var/log/httpd/
                      \__ dev1.foodb.org/
+                                \__ access_log
+                                \__ error_log
                      \__ foodb.org/
+                                \__ access_log
+                                \__ error_log
                      \__ qa.foodb.org/
+                                \__ access_log
+                                \__ error_log
 
 ----
 
@@ -166,9 +172,9 @@ them in the virtual host configuration file.
 
 The global AHS configuration file is `/etc/httpd/conf/http.conf`. At the end of the file add the lines
 
-        NameVirtualHost *:80
-        NameVirtualHost *:443
-        Include conf/enabled_sites/[^\*]*.conf
+     NameVirtualHost *:80
+     NameVirtualHost *:443
+     Include conf/enabled_sites/[^\*]*.conf
 
 This enables [name-based virtual hosts](https://httpd.apache.org/docs/2.2/vhosts/name-based.html) on ports 80 (http) and 443 (https), and then includes all the individual virtual host conf files in the `enabled_sites` directory.
 
