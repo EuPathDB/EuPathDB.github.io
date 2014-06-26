@@ -21,9 +21,7 @@ These are the basic steps for setting up HTTP Server for the project `FooDB`.
 
 `yum install httpd`
 
-`mkdir -p /var/www/FooDB/{project_home,gus_home}`
-
-`mkdir /var/log/httpd/FooDB`
+`mkdir -p /var/www/FooDB`
 
 `mkdir /etc/httpd/conf/{disabled_sites,enabled_sites,lib}`
 
